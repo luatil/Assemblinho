@@ -4,15 +4,43 @@
 
 int geline(char line[], int maxsize);
 void decode(char arr[][4], char line[]);
+void getwords(char s1[], char s2[], char so[]);
 
 int main() 
-{
+{   
+    //char s1[] = "MOV";
+    //char s2[MAX];
+    //str_to_hex(s2, "MOV");
+    //printf("%s\n", s2);
+    daloop();
+    return 0;
+}
+
+void daloop() {
     char inst[MAX][4];
     char line[MAX];
+    char code[MAX];
+    char address[MAX];
+    char tmp[MAX];
+    int i =0; 
+    
+    printf("v2.0 raw\n");
+
     while(geline(line, MAX) != 0) {
-        printf("%s", line);
+        // The program is reading the line correctly
+        //printf("%s", line);
+        getwords(code, address, line);
+        //printf("%s %s\n", code, address);
+        str_to_hex(tmp, code);
+        printf("%s%s ", tmp, address);
+        //printf("\n");
     }
-    return 0;
+    printf("\n");
+
+}
+
+void clear_str(char s[], int size) {
+    for(int i = 0; i < size; i++) s[i]=0;
 }
 
 int geline(char line[], int maxsize) {
@@ -27,21 +55,31 @@ int geline(char line[], int maxsize) {
     return i;
 }
 
-int getwords(char code[], char address[], char line[]) {
-    int c, i;
-    for(i = 0; i<MAX && (c = getchar()) != ' '; ++i) 
-        code[i] = c;
-    // for simplicity, let's assume it's just a one space thing
-    // also, adress is just a 2 value thing
-    address[0] = c = getchar();
-    address[1] = c = getchar();
-    return i;
+void getwords(char s1[], char s2[], char so[]) {
+    int c;
+    int state = 0;
+    for(int i = 0; so[i] != '\n'; ++i) {
+        if(so[i] == ' ' && state == 0) {
+            s1[i] = '\0';
+            state = 1;
+        }
+        if(state == 0) {
+            s1[i] = so[i];
+        } 
+        if(state == 1 && so[i] != ' ') {
+            s2[0] = so[i]   + 32;
+            s2[1] = so[i+1]; 
+            s2[2] = '\0';
+            return;
+        }
+    }
 }
 
 int string_compare(char str1[], char str2[]) {
     int i = 0;
     while(str1[i] != '\0') {
         if(str1[i] != str2[i]) return 0;
+        i++;
     }
     return i;
 }
