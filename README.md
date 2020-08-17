@@ -46,3 +46,4 @@ v2.0 raw
 
 - Fix string comparison, JP == JPB problem
 - Fix character shift
+- Make a way to subtract 1 without user input
