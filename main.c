@@ -98,9 +98,9 @@ void str_to_hex(char to[], char from[]) {
     else if(string_compare("READ" ,  from) > 0) copy(to, "07");
     else if(string_compare("PRINT" , from) > 0) copy(to, "08");
     else if(string_compare("STOP",   from) > 0) copy(to, "09");
-    else if(string_compare("JP" ,    from) > 0) copy(to, "0a");
     else if(string_compare("JPB" ,   from) > 0) copy(to, "0b");
     else if(string_compare("JPZ" ,   from) > 0) copy(to, "0d");
+    else if(string_compare("JP" ,    from) > 0) copy(to, "0a");
 }
 
 void decode(char arr[][4], char line[]) {
