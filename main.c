@@ -67,7 +67,7 @@ void getwords(char s1[], char s2[], char so[]) {
             s1[i] = so[i];
         } 
         if(state == 1 && so[i] != ' ') {
-            s2[0] = so[i]   + 32;
+            s2[0] = so[i];
             s2[1] = so[i+1]; 
             s2[2] = '\0';
             return;
