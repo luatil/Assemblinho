@@ -1,0 +1,7 @@
+READ  A1
+READ  A2
+MOV   A1 
+SUM   A2
+CP    A3
+PRINT A3
+STOP
