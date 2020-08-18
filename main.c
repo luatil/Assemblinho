@@ -2,9 +2,14 @@
 
 #define MAX 10
 
-int geline(char line[], int maxsize);
+int  geline(char line[], int maxsize);
 void decode(char arr[][4], char line[]);
 void getwords(char s1[], char s2[], char so[]);
+void daloop();
+void clear_str(char[], int size);
+int  string_compare(char str1[], char str2[]);
+void str_to_hex(char to[], char from[]);
+void decode(char arr[][4], char line[]);
 
 int main() 
 {   
