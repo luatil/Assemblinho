@@ -13,10 +13,6 @@ void decode(char arr[][4], char line[]);
 
 int main() 
 {   
-    //char s1[] = "MOV";
-    //char s2[MAX];
-    //str_to_hex(s2, "MOV");
-    //printf("%s\n", s2);
     daloop();
     return 0;
 }
