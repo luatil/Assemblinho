@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define MAX 10
+#define MAX 30
 
 int  geline(char line[], int maxsize);
 void decode(char arr[][4], char line[]);
@@ -10,6 +10,40 @@ void clear_str(char[], int size);
 int  string_compare(char str1[], char str2[]);
 void str_to_hex(char to[], char from[]);
 void decode(char arr[][4], char line[]);
+void copy(char to[], char from[]);
+void printfile(char inst[MAX][4]);
+
+void printfile(char inst[MAX][4]) {
+    int c;
+    printf("v2.0 raw\n");
+    for(int i = 0; i < MAX; i++) {
+        //if(i % 16) putchar('\n');
+        for(int j = 0; j < 4; j++) {
+            c = inst[i][j];
+            if(c >= 'A' && c <= 'Z') 
+                putchar(c + 32);
+            else
+                putchar(c);
+        }
+        putchar(' ');
+    }
+    putchar('\n');
+
+};
+
+int string_concatenate(char to[], char str1[], char str2[]) {
+    int i, j;
+        i = j = 0;
+        while(str2[j] != '\0') {
+            if(str1[i] == '\0') {
+            to[i + j]  = str2[j];
+            j++;
+            } else 
+                to[i++] = str1[i];
+            };
+        to[i+j] = '\0';
+    return i+j;
+ }
 
 int main() 
 {   
@@ -18,26 +52,22 @@ int main()
 }
 
 void daloop() {
-    char inst[MAX][4];
     char line[MAX];
-    char code[MAX];
+    char operation[MAX];
+
     char address[MAX];
+    char inst[MAX][4];
+
     char tmp[MAX];
     int i =0; 
     
-    printf("v2.0 raw\n");
 
     while(geline(line, MAX) != 0) {
-        // The program is reading the line correctly
-        //printf("%s", line);
-        getwords(code, address, line);
-        //printf("%s %s\n", code, address);
-        str_to_hex(tmp, code);
-        printf("%s%s ", tmp, address);
-        //printf("\n");
+        getwords(operation, address, line);
+        str_to_hex(tmp, operation);
+        string_concatenate(inst[i++], tmp, address);
     }
-    printf("\n");
-
+    printfile(inst);
 }
 
 void clear_str(char s[], int size) {
