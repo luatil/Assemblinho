@@ -44,6 +44,9 @@ v2.0 raw
 
 # TODO
 
-- Fix string comparison, JP == JPB problem
-- Fix character shift
+- DONE: Fix string comparison, JP == JPB problem
+- DONE: Fix character shift
 - Make a way to subtract 1 without user input
+- Fix STOP command
+- Make some abstraction for registers
+- Make a way to read numbers from the file
